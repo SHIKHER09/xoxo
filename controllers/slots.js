@@ -2,8 +2,8 @@
 import Admin from "../models/admin.js"
 export const createSlots = async (req, res, next) => {
   try {
-    const { adminEmail, date, start_time, end_time, duration } = req.body;
-    const dur= parseInt(duration);
+    const { adminEmail, date, start_time, end_time } = req.body;
+    const dur= 30;
     const admin = await Admin.findOne({ email: adminEmail });
 
     if (!admin) {
