@@ -1,10 +1,9 @@
 
 import Admin from "../models/admin.js"
-
 export const createSlots = async (req, res, next) => {
   try {
     const { adminEmail, date, start_time, end_time, duration } = req.body;
-
+    const dur= parseInt(duration);
     const admin = await Admin.findOne({ email: adminEmail });
 
     if (!admin) {
@@ -38,7 +37,7 @@ export const createSlots = async (req, res, next) => {
       return res.status(400).json({ message: 'End time cannot be before or equal to start time' });
     }
 
-    const durationInMilliseconds = duration * 60 * 1000;
+    const durationInMilliseconds = dur * 60 * 1000;
 
     const slotsByDate = {};
 
